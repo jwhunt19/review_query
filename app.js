@@ -4,6 +4,8 @@ const {Builder, By, Key, until} = require('selenium-webdriver');
   let driver;
   const stores = [];
 
+  const query = 'coffee'
+
   try {
     driver = await new Builder().forBrowser('chrome').build();
     await driver.get('https://apps.shopify.com/subscription-payments/reviews');
@@ -25,6 +27,9 @@ const {Builder, By, Key, until} = require('selenium-webdriver');
 
   } finally {
     console.log(stores.length)
+    const result = stores.filter(store => store.toLowerCase().includes(query));
+
+    console.log('search result', result);
     await driver.quit();
   }
 })();
