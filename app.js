@@ -1,14 +1,17 @@
 const {Builder, By, Key, until} = require('selenium-webdriver');
 
-(async function helloSelenium() {
+async function scrapeShopify() {
   let driver;
   const stores = [];
-
-  const query = 'coffee'
-
+  
+  const query = 'benjamin'
+  
   try {
-    driver = await new Builder().forBrowser('chrome').build();
+    console.log('connecting...')  
+    driver = await new Builder().usingServer('http://selenium:4444/wd/hub').forBrowser('chrome').build();
+    console.log('connected');
     await driver.get('https://apps.shopify.com/subscription-payments/reviews');
+    console.log(await driver.getCurrentUrl());
 
     const scrape = async ()  => {
       elements = await driver.findElements(By.css('h3.review-listing-header__text'))
@@ -32,4 +35,8 @@ const {Builder, By, Key, until} = require('selenium-webdriver');
     console.log('search result', result);
     await driver.quit();
   }
-})();
+};
+
+module.exports = {
+  scrapeShopify
+}
