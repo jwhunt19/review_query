@@ -6,7 +6,7 @@ const Search = () => {
   const [query, setQuery] = useState('')
 
   const handleClick = () => {
-    axios.get(`/query/${query}`)
+    axios.get(`http://localhost:8080/query/${query}`)
     .catch((r) => {
       console.log(r)
     });

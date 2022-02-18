@@ -1,15 +1,14 @@
 const {Builder, By, Key, until} = require('selenium-webdriver');
 
-async function scrapeShopify() {
+async function scrapeShopify(query) {
   let driver;
   const stores = [];
-  
-  const query = 'benjamin'
   
   try {
     console.log('connecting...')  
     driver = await new Builder().usingServer('http://selenium:4444/wd/hub').forBrowser('chrome').build();
-    console.log('connected');
+    // driver = await new Builder().forBrowser('chrome').build();
+    // console.log('connected');
     await driver.get('https://apps.shopify.com/subscription-payments/reviews');
     console.log(await driver.getCurrentUrl());
 
